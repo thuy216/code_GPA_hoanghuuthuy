@@ -1,0 +1,37 @@
+#Check if the input is valid or not
+def inputNumber(promt):
+    noErrol = False
+    while True:
+        try:
+            magicNumber = float(input(promt))
+            return magicNumber
+        except Exception:
+            print("Dữ liệu không hợp lệ! Hãy nhập lại.")
+#Calculate GPA
+def caculate_gpa():
+    product = 0
+    for i in range(0,len(subjects)):
+        product += grades[i]*credits[i]
+    return product / (sum(credits))
+#Execute the code
+name = input("Tên của bạn là gì?")
+subjects = ["C#","Python","Java"]
+credits = []
+grades = []
+print("=====Calculate GPA=====")
+for subject in subjects:
+    grade = inputNumber(f"Hãy nhập điểm cho môn {subject}: ")
+    grades.append(grade)
+    credit = inputNumber(f"Hãy nhập số tín chỉ cho môn {subject}: ")
+    credits.append(credit)
+#Store and print out student names and Gpa
+print(f"Tên của bạn là:: {name}")
+print(f"GPA: {caculate_gpa()}")
+print("=====Calculate GPA=====")
+#Print to text file
+with open("student_scores.txt","w", encoding='utf-8') as f:
+    f.write(f"Tên sinh viên: {name}\n")
+    f.write(f"GPA: {caculate_gpa()}\n")
+    for i in range(len(subjects)):
+        f.write(f"Môn học: {subjects[i]}, Điểm: {grades[i]}, Số tín chỉ: {credits[i]}\n")
+
